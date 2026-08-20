@@ -3,7 +3,8 @@ import random as rand
 # def loot(cod,salmon,catfish,tuna):
 #     pass
 
-
+#test commitu
+#
 rods = ["wooden rod", "iron rod", "steel rod", "master rod"]
 worms = ["worm", "blue worm", "ancient worm", "golden worm"]
 
