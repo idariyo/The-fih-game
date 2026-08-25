@@ -9,12 +9,6 @@ rods = ["wooden rod", "iron rod", "steel rod", "master rod"]
 worms = ["worm", "blue worm", "ancient worm", "golden worm"]
 
 
-"""
-1. Przyjmujesz inputa (x)
-2. Wpisujesz jakies wyrazenie (fish, salmon)
-3. W metodzie loot1 gdzie masz tablice fish1 i zmienna randomFish1, usuwasz ja
-4. Powtarzasz az nie bedzie konca
-"""
 loot_chests_loot = [
     (rand.randrange(2, 6), "worms"),
     (rand.randrange(3, 20), "coins"),
@@ -22,6 +16,12 @@ loot_chests_loot = [
     (1, "pearl"),
     (1, "golden worm"),
 ]
+"""
+1. Przyjmujesz inputa (x)
+2. Wpisujesz jakies wyrazenie (fish, salmon)
+3. W metodzie loot1 gdzie masz tablice fish1 i zmienna randomFish1, usuwasz ja
+4. Powtarzasz az nie bedzie konca
+"""
 # "coins", "gold", "artefact", "pearl", "golden worm"
 #
 # rand.randrange(2,6) 'worms' , rand.randrange(3,20) "coins"
@@ -64,8 +64,12 @@ print("fish,shop,worm")
 choice = input("fih?").lower()
 
 if choice == "fish":
-    print(loot1() + loot2()) or print(loot1() + loot2() and loot3())
-    # print(loot1() + loot2()) or print(loot1() + loot2() and loot3())
+    try:
+        print(loot1() + loot2()) or print(loot1() + loot2() and loot3())
+    except:
+        print("no fish found")
+
+
 elif choice == "shop":
     print("Available rods:")
     for rod in rods:
