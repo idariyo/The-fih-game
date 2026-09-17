@@ -3,18 +3,37 @@ import random as rand
 # def loot(cod,salmon,catfish,tuna):
 #     pass
 
-#test commitu
-#
-rods = ["wooden rod", "iron rod", "steel rod", "master rod"]
-worms = ["worm", "blue worm", "ancient worm", "golden worm"]
+"""
+    other = input("other").lower()
 
+    if other == "other":
+        print("worm shop")
+        for worm in worms:
+            print(f"- {worm}")
+"""
+
+#test commitu
+coins = 0
+worms = 0
+"""
+for _ in range(100):
+    pass
+"""
+rand_coins = rand.randrange(3, 20)
+
+
+#grupy do sklepu
+rods = [("wooden rod", 20), ("iron rod", 60), ("steel rod", 80), ("master rod", 200)]
+worms = [("worm", 2), ("blue worm", 5), ("ancient worm", 16), ("golden worm", 10)]
+#rybki
+fish1 = ["cod", "salmon", "catfish", "tuna"]
 
 loot_chests_loot = [
     (rand.randrange(2, 6), "worms"),
-    (rand.randrange(3, 20), "coins"),
+    (rand_coins, "coins"),       #liczba od 3 do 20
     (1, "ancient artefact"),
     (1, "pearl"),
-    (1, "golden worm"),
+    (1, "golden worm")
 ]
 """
 1. Przyjmujesz inputa (x)
@@ -26,13 +45,8 @@ loot_chests_loot = [
 #
 # rand.randrange(2,6) 'worms' , rand.randrange(3,20) "coins"
 
-
-def loot1():
-    global fish1
-    fish1 = ["cod", "salmon", "catfish", "tuna"]
-    randomFish1 = rand.choice(fish1)
-    fish1.remove(randomFish1)
-    return rand.randrange(1, 5), randomFish1
+def enoughToBuy(rod):
+    return print(coins >= rod[1]) #puki co tyloko test "print(coins >= rod[1])" to tylok wazne->coins >= rod[1]
 
 
 def loot2():
@@ -44,15 +58,19 @@ def loot2():
 
 
 # zrobic wielka petle i zapisywanie przedmitow
-
+#
 
 def loot3():
     fish1.extend(["loot_chest"])
     randomFish1 = rand.choice(fish1)
     fish1.remove(randomFish1)
-    if randomFish1 == "loot_chest":
+
+
+    if randomFish1 == "loot_chest":     #jezeli loot chest ->losuj z tablicy loot_chests_loot
         print("loot chest found")
         rand_choice = rand.randrange(0, len(loot_chests_loot))
+        if loot_chests_loot[rand_choice] == "coins":
+            coins = coins + rand_coins
         return loot_chests_loot[rand_choice]
 
     else:
@@ -71,13 +89,22 @@ if choice == "fish":
 
 
 elif choice == "shop":
+    print(f"coins: {coins}")
     print("Available rods:")
     for rod in rods:
         print(f"- {rod}")
+        input("enter: buy rod_name")
 
-    other = input("other").lower()
 
-    if other == "other":
-        print("worm shop")
-        for worm in worms:
-            print(f"- {worm}")
+
+elif choice == "worm":
+    print("worm shop")
+    for worm in worms:
+        print(f"- {worm}")
+        input("enter: buy worm_name")
+        coins = coins - worm[1]     #coins = coins - worm[1]
+        print(f"coins: {coins}")
+
+
+else:
+    print("invalid choice")
